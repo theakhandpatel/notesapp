@@ -1,6 +1,13 @@
-import { databases, collections } from "./config";
+import { databases } from "./config";
 import { ID } from "appwrite";
 
+const collections = [
+  {
+    name: "notes",
+    id: import.meta.env.VITE_COLLECTION_NOTES_ID,
+    dbId: import.meta.env.VITE_DATABASE_ID,
+  },
+]
 const db = {};
 
 collections.forEach((collection) => {

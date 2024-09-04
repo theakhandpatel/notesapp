@@ -3,7 +3,7 @@ import { db } from "../appwrite/databases";
 import { NotesContext } from "../context/NotesContext";
 
 const Color = ({ color }) => {
-  const {selectedNote,notes} = useContext(NotesContext);
+  const {selectedNote,notes,setNotes} = useContext(NotesContext);
  
   const changeColor = () => {
     console.log("Selected color:", selectedNote);

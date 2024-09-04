@@ -1,13 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Spinner from "../icons/Spinner";
 import { autoGrow, setNewOffset, setZIndex, bodyParser } from "../util";
 import { db } from "../appwrite/databases";
 import DeleteButton from "./DeleteButton";
+import { NotesContext } from "../context/NotesContext";
 
-export default function NoteCard({ note,setNotes, setSelectedNote }) {
+export default function NoteCard({ note }) {
   const [position, setPosition] = useState(bodyParser(note.position));
   const cardRef = useRef(null);
   const textAreaRef = useRef(null);
+
+  const { setSelectedNote } = useContext(NotesContext);
+ 
   const [saving, setSaving] = useState(false);
   const keyUpTimer = useRef(null);
 
@@ -88,13 +92,14 @@ export default function NoteCard({ note,setNotes, setSelectedNote }) {
         className="card-header"
         style={{ backgroundColor: colors.colorHeader }}
       >
+        <DeleteButton noteId={note.$id} />
+
         {saving && (
           <div className="card-saving">
             <Spinner color={colors.colorText} />
             <span style={{ color: colors.colorText }}>Saving...</span>
           </div>
         )}
-        <DeleteButton noteId={note.$id} setNotes={setNotes}/>
       </div>
 
       <div className="card-body">

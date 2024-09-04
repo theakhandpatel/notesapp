@@ -11,6 +11,7 @@ const AddButton = () => {
     const { setNotes } = useContext(NotesContext);
  
     const addNote = async () => {
+      console.log("Adding note");
         const payload = {
             position: JSON.stringify({
                 x: startingPos.current,
