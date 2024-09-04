@@ -39,7 +39,7 @@ const AddButton = () => {
   }, []);
 
   return (
-    <div id="add-btn" onClick={addNote} ref={addButtonRef}>
+    <div id="add-btn" onClick={addNote} ref={addButtonRef} title="Alt + Space">
       <Plus />
     </div>
   );
