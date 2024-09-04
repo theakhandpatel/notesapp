@@ -11,7 +11,7 @@ export default function NoteCard({ note }) {
   const textAreaRef = useRef(null);
 
   const { setSelectedNote } = useContext(NotesContext);
- 
+
   const [saving, setSaving] = useState(false);
   const keyUpTimer = useRef(null);
 
@@ -66,15 +66,14 @@ export default function NoteCard({ note }) {
   };
 
   const mouseDown = (e) => {
-    console.log('e.target.className:', e.target.className);
-    if(e.target.className === 'card-header'){
-      console.log('card-header was set',note);
-      setZIndex(cardRef.current);
-      mouseStartPos = { x: e.clientX, y: e.clientY };
-      document.addEventListener("mousemove", mouseMove);
-      document.addEventListener("mouseup", mouseUp);
-      setSelectedNote(note);
+    if (e.target.tagName === "TEXTAREA" || e.target.className === "delete-button") {
+      return;
     }
+    setZIndex(cardRef.current);
+    mouseStartPos = { x: e.clientX, y: e.clientY };
+    document.addEventListener("mousemove", mouseMove);
+    document.addEventListener("mouseup", mouseUp);
+    setSelectedNote(note);
   };
 
   return (

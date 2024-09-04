@@ -8,7 +8,7 @@ import { db } from "../appwrite/databases";
  
 const AddButton = () => {
     const startingPos = useRef(10);
-    const { setNotes } = useContext(NotesContext);
+    const { setNotes,setSelectedNote } = useContext(NotesContext);
  
     const addNote = async () => {
       console.log("Adding note");
@@ -23,6 +23,7 @@ const AddButton = () => {
  
         const response = await db.notes.create(payload);
         setNotes((prevState) => [...prevState, response]);
+        setSelectedNote(response);
     };
  
     return (
